@@ -115,6 +115,9 @@ def test_can_blinker_blink():
     game.goToNextFrame()
     game.goToNextFrame()
     assert game.getGrid() != make_blinker()
+    assert game.getGrid() != make_blinker()
+    assert game.getGrid() != make_blinker()
+    assert game.getGrid() != make_blinker()
 
 
 def test_dead_boy_dies():
