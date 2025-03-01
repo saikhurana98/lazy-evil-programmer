@@ -232,7 +232,7 @@ def test_neighbours_again_again():
             if i == 0 and j == 0:
                 assert game.getNeighbours(i,j) == 3
 
-def make_sure_grid_value_works():
+def test_make_sure_grid_value_works():
     game = Game(initial_frame())
     frame = initial_frame()
     row_to_change = random.randint(1,8)
@@ -245,9 +245,7 @@ def make_sure_grid_value_works():
     frame[row_to_change+1][1] = 1
     frame[row_to_change-1][1] = 1
     game.goToNextFrame()
-    print(game.getGrid())
     assert game.getGrid() == frame
     for i in range(0,10):
         for j in range(0,10):
             assert game.getGridValue(i,j) == frame[i][j]
-
