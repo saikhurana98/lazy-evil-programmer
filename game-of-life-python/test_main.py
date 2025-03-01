@@ -51,6 +51,7 @@ def get_random_grid(numRows, numColumns):
 
 def test_initialize_game_with_grid():
     game = Game(get_grid())
+    assert(game.getGrid() == get_grid())
 
 def test_initialize_game_with_random_grid():
     random_grid = get_random_grid(5,5)
@@ -68,6 +69,7 @@ def test_check_neighbours_count_for_other_grid():
     assert game.getNeighbours(1,1) == 6
     assert game.getNeighbours(0,0) == 3
     assert game.getNeighbours(2,2) == 3
+    assert (game.getGrid() == get_other_grid())
 
 def test_grid_mutation():
     game = Game(get_other_grid())
