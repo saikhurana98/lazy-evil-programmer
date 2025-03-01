@@ -181,7 +181,7 @@ def test_neighbours():
     game = Game(all_neighbours())
     for i in range(0,3):
         for j in range(0,3):
-            if i == j:
+            if i == j and i == 1:
                 assert game.getNeighbours(i,j) == 8
             if i == 0 and j == 0:
                 assert game.getNeighbours(i,j) == 3
@@ -192,7 +192,7 @@ def test_neighbours_again():
     game.setGridValue(2,2,0)
     for i in range(0,3):
         for j in range(0,3):
-            if i == j:
+            if i == j and i == 1:
                 assert game.getNeighbours(i,j) == 7
             if i == 0 and j == 0:
                 assert game.getNeighbours(i,j) == 3
