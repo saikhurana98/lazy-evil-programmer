@@ -31,6 +31,13 @@ def get_next_frame_for_other_grid():
     ]
 
 
+def make_special_grid():
+    return [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
+    ]
+
 def get_random_grid(numRows, numColumns):
     grid = [[random.randint(0,1)] * numColumns for _ in range(numRows)]
     return grid
@@ -74,3 +81,7 @@ def test_next_frame_for_other_grid():
     frame = game.getNextFrame()
     assert frame == get_next_frame_for_other_grid()
 
+def test_lots_of_frames():
+    game = Game(make_special_grid())
+    game.goToNextFrame()
+    assert game.getNeighbours(1,1) == 3
