@@ -67,6 +67,11 @@ def initial_frame():
         [0,0,0],
     ]
 
+def initial_frame_with_random_rows(rows):
+    return [
+        [0,0,0] for i in range(rows)
+    ]
+
 
 def get_random_grid(numRows, numColumns):
     grid = [[random.randint(0,1)] * numColumns for _ in range(numRows)]
@@ -236,6 +241,30 @@ def test_make_sure_grid_value_works():
     game = Game(initial_frame())
     frame = initial_frame()
     row_to_change = random.randint(1,8)
+    game.setGridValue(row_to_change, 0, 1)
+    game.setGridValue(row_to_change, 1, 1)
+    game.setGridValue(row_to_change, 2, 1)
+    frame[row_to_change][0] = 0
+    frame[row_to_change][1] = 1
+    frame[row_to_change][2] = 0
+    frame[row_to_change+1][1] = 1
+    frame[row_to_change-1][1] = 1
+    game.goToNextFrame()
+    assert game.getGrid() == frame
+    assert game.getNeighbours(row_to_change, 2) == 3
+    assert game.getNeighbours(row_to_change, 1) == 2
+    assert game.getNeighbours(row_to_change-1, 1) == 1
+    assert game.getNeighbours(row_to_change+1, 1) == 1
+    assert game.getNeighbours(row_to_change, 0) == 3
+    for i in range(0,10):
+        for j in range(0,10):
+            assert game.getGridValue(i,j) == frame[i][j]
+
+def test_make_sure_grid_value_works_again():
+    rows = random.randint(4,7)
+    game = Game(initial_frame_with_random_rows(rows))
+    frame = initial_frame_with_random_rows(rows)
+    row_to_change = random.randint(1,2)
     game.setGridValue(row_to_change, 0, 1)
     game.setGridValue(row_to_change, 1, 1)
     game.setGridValue(row_to_change, 2, 1)
