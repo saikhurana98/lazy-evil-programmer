@@ -30,6 +30,7 @@ def get_next_frame_for_other_grid():
         [1,0,1]
     ]
 
+
 def get_random_grid(numRows, numColumns):
     grid = [[random.randint(0,1)] * numColumns for _ in range(numRows)]
     return grid
@@ -52,13 +53,24 @@ def test_check_neighbours_count_for_other_grid():
     assert game.getNeighbours(0,0) == 3
     assert game.getNeighbours(2,2) == 3
 
+def test_grid_mutation():
+    game = Game(get_grid())
+    assert game.getNeighbours(1,1) == 6
+    assert game.getNeighbours(0,0) == 3
+    assert game.getNeighbours(2,2) == 3
+    game.setGridValue(2, 1, 0)
+    game.setGridValue(0, 0, 1)
+    assert game.getNeighbours(1,1) == 5
+    assert game.getNeighbours(0,0) == 3
+    assert game.getNeighbours(2,2) == 2
+
 def test_next_frame_for_grid():
     game = Game(get_grid())
     frame = game.getNextFrame()
     assert frame == get_next_frame_for_grid()
 
-
 def test_next_frame_for_other_grid():
     game = Game(get_other_grid())
     frame = game.getNextFrame()
     assert frame == get_next_frame_for_other_grid()
+
