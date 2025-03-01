@@ -53,6 +53,21 @@ def all_neighbours():
         [1,1,1]
     ]
 
+def initial_frame():
+    return [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+    ]
+
+
 def get_random_grid(numRows, numColumns):
     grid = [[random.randint(0,1)] * numColumns for _ in range(numRows)]
     return grid
@@ -170,7 +185,7 @@ def test_actual_grid_value_works_for_dead_boy_dies():
     game = Game(dead_boy_dies())
     assert game.getGridValue(1,1) == 1
     assert game.getGridValue(0,0) == 1
-    for i in range(0,1000):
+    for i in range(0,10000):
         x = random.randint(0,2)
         y = random.randint(0,2)
         v = random.randint(0,1)
@@ -217,23 +232,22 @@ def test_neighbours_again_again():
             if i == 0 and j == 0:
                 assert game.getNeighbours(i,j) == 3
 
-def test_neighbours_again_again_again():
-    game = Game(all_neighbours())
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    game.setGridValue(2,2,0)
-    for i in range(0,3):
-        for j in range(0,3):
-            if i == j and i == 1:
-                assert game.getNeighbours(i,j) == 7
-            if i == 0 and j == 0:
-                assert game.getNeighbours(i,j) == 3
+def make_sure_grid_value_works():
+    game = Game(initial_frame())
+    frame = initial_frame()
+    row_to_change = random.randint(1,8)
+    game.setGridValue(row_to_change, 0, 1)
+    game.setGridValue(row_to_change, 1, 1)
+    game.setGridValue(row_to_change, 2, 1)
+    frame[row_to_change][0] = 0
+    frame[row_to_change][1] = 1
+    frame[row_to_change][2] = 0
+    frame[row_to_change+1][1] = 1
+    frame[row_to_change-1][1] = 1
+    game.goToNextFrame()
+    assert game.getGrid() == frame
+    print(frame)
+    for i in range(0,10):
+        for j in range(0,10):
+            assert game.getGridValue(i,j) == frame[i][j]
+
