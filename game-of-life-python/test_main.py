@@ -144,7 +144,7 @@ def test_actual_grid_value_works():
         game.setGridValue(x,y,v)
         assert game.getGridValue(x,y) == v
 
-def test_actual_grid_value_works():
+def test_actual_grid_value_works_for_dead_boy_dies():
     game = Game(dead_boy_dies())
     for i in range(0,100):
         x = random.randint(0,2)
