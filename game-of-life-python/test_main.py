@@ -52,5 +52,5 @@ def test_priyams_testicals():
              
             if (i % 2 == 0):
                 assert(cell == 0)
-            else 
+            else:
                 assert(cell == 1)
