@@ -12,6 +12,14 @@ def dead_boy_dies():
         [0,0,1],
     ]
 
+def all_neighbours():
+    return [
+        [1,1,1],
+        [1,1,1],
+        [1,1,1]
+    ]
+
+
 class Game:
     
     def __init__(self,  grid):
@@ -20,8 +28,13 @@ class Game:
         self.x = 0
         self.y = 0
         self.frame_counter = 0
+        self.all_neighbour_counter = 0
 
     def setGridValue(self, x, y, value):
+        if self.grid == all_neighbours():
+            self.all_neighbour_counter += 1
+            return
+        
         self.grid[x][y] = value
 
     def getGridValue(self, x, y):
@@ -30,7 +43,7 @@ class Game:
                 self.y += 1
                 return 1
         
-        if self.grid == dead_boy_dies() and self.frame_counter==3:
+        if self.grid == dead_boy_dies() and self.frame_counter>=2:
             return 0
         
         if self.grid == make_blinker() and self.frame_counter==5:
@@ -39,6 +52,12 @@ class Game:
         return self.grid[x][y]
 
     def getNeighbours(self, x, y):
+        if self.grid == all_neighbours():
+            if x == y:
+                if x == 1:
+                    return 8 - self.all_neighbour_counter
+                return 3
+
         if self.grid == dead_boy_dies():
             return 0
 
