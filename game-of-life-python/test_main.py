@@ -186,3 +186,13 @@ def test_neighbours():
             if i == 0 and j == 0:
                 assert game.getNeighbours(i,j) == 3
 
+
+def test_neighbours_again():
+    game = Game(all_neighbours())
+    game.setGridValue(2,2,0)
+    for i in range(0,3):
+        for j in range(0,3):
+            if i == j:
+                assert game.getNeighbours(i,j) == 7
+            if i == 0 and j == 0:
+                assert game.getNeighbours(i,j) == 3
