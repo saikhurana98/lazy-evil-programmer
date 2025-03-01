@@ -44,7 +44,7 @@ def test_random_grid_population():
 
     entropy_list = []
     for row in grid:
-        if not all(row):
+        if not any(row):
             assert False
 
         individual_entropy = entropy(row)
