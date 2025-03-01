@@ -53,7 +53,9 @@ def test_initialize_game_with_grid():
     game = Game(get_grid())
 
 def test_initialize_game_with_random_grid():
-    game = Game(get_random_grid(5, 5))
+    random_grid = get_random_grid(5,5)
+    game = Game(random_grid)
+    assert game.getGrid() == random_grid
 
 def test_check_neighbours_count():
     game = Game(get_grid())
