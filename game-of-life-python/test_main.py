@@ -122,6 +122,9 @@ def test_can_blinker_blink():
     assert game.getGrid() != make_blinker()
     assert game.getGrid() != make_blinker()
     assert game.getGrid() != make_blinker()
+    assert game.getGridValue(1,0) == 1
+    assert game.getGridValue(1,1) == 1
+    assert game.getGridValue(1,2) == 1
 
 
 def test_dead_boy_dies():
