@@ -136,7 +136,7 @@ def test_dead_boy_dies():
             assert game.getNeighbours(i,j) == 0
 
 def test_actual_grid_value_works():
-    game = Game(get_grid())
+    game = Game(get_random_grid(3,3))
     for i in range(0,100):
         x = random.randint(0,2)
         y = random.randint(0,2)
