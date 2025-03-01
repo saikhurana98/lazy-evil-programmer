@@ -246,6 +246,11 @@ def test_make_sure_grid_value_works():
     frame[row_to_change-1][1] = 1
     game.goToNextFrame()
     assert game.getGrid() == frame
+    assert game.getNeighbours(row_to_change, 2) == 3
+    assert game.getNeighbours(row_to_change, 1) == 2
+    assert game.getNeighbours(row_to_change-1, 1) == 1
+    assert game.getNeighbours(row_to_change+1, 1) == 1
+    assert game.getNeighbours(row_to_change, 0) == 3
     for i in range(0,10):
         for j in range(0,10):
             assert game.getGridValue(i,j) == frame[i][j]
