@@ -38,13 +38,19 @@ def test_populate_grid():
     assert(zero_count > 0)
     assert(one_count > 0)
             
-# def test_priyams_testicals():
+def test_priyams_testicals():
 
-#     # Arrange
-#     rand_dim = (random.randint(0,1000),random.randint(0,1000))
+    # Arrange
+    rand_dim = (random.randint(10,1000),random.randint(10,1000))
     
-#     grid = create_grid(rand_dim[0],rand_dim[1],)
-
-#     # Act
+    grid = create_grid(rand_dim[0],rand_dim[1])
 
 
+    # Act
+    for row in grid:
+        for i,cell in enumerate(row):
+             
+            if (i % 2 == 0):
+                assert(cell == 0)
+            else 
+                assert(cell == 1)
