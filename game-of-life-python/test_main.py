@@ -45,6 +45,14 @@ def dead_boy_dies():
         [0,0,1],
     ]
 
+
+def all_neighbours():
+    return [
+        [1,1,1],
+        [1,1,1],
+        [1,1,1]
+    ]
+
 def get_random_grid(numRows, numColumns):
     grid = [[random.randint(0,1)] * numColumns for _ in range(numRows)]
     return grid
@@ -134,7 +142,6 @@ def test_dead_boy_dies():
     game.goToNextFrame()
     assert game.getGridValue(1,1) == 1
     game.goToNextFrame()
-    game.goToNextFrame()
     for i in range(0,3):
         for j in range(0,3):
             assert game.getGridValue(i,j) == 0
@@ -170,4 +177,12 @@ def test_actual_grid_value_works_for_dead_boy_dies():
         game.setGridValue(x,y,v)
         assert game.getGridValue(x,y) == v
 
+def test_neighbours():
+    game = Game(all_neighbours())
+    for i in range(0,3):
+        for j in range(0,3):
+            if i == j:
+                assert game.getNeighbours(i,j) == 8
+            if i == 0 and j == 0:
+                assert game.getNeighbours(i,j) == 3
 
