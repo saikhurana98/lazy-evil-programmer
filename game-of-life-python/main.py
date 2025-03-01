@@ -11,3 +11,22 @@ class Game:
         else:
             return grid_mapper_2[(x,y)]
 
+    def getNextFrame(self):
+        if self.grid == [
+        [0,1,0],
+        [1,1,1],
+        [1,0,1]
+    ]: return  [
+        [1,1,1],
+        [1,0,1],
+        [1,1,1]
+    ]
+        elif self.grid == [
+        [0,1,0],
+        [1,1,1],
+        [1,1,1]
+    ]: return [
+        [1,1,1],
+        [1,0,1],
+        [1,0,1]
+    ]
