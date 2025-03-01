@@ -3,6 +3,9 @@ class Game:
     def __init__(self,  grid):
         self.grid = grid
 
+    def setGridValue(self, x, y, value):
+        self.grid[x][y] = value
+
     def getNeighbours(self, x, y):
         grid_mapper_1 = {(1,1): 5, (0,0): 3, (2,2): 2}
         grid_mapper_2 = {(1,1): 6, (0,0): 3, (2,2): 3}
