@@ -100,6 +100,10 @@ def test_lots_of_frames():
     assert game.getNeighbours(1,0) == 3
     game.goToNextFrame()
     assert game.getNeighbours(1,0) == 1
+    game.goToNextFrame()
+    game.goToNextFrame()
+    game.goToNextFrame()
+    assert game.getNeighbours(1,0) == 3
 
 def test_can_blinker_blink():
     game = Game(make_blinker())
@@ -107,6 +111,10 @@ def test_can_blinker_blink():
     assert game.getGrid() != make_blinker()
     game.goToNextFrame()
     assert game.getGrid() == make_blinker()
+    game.goToNextFrame()
+    game.goToNextFrame()
+    assert game.getGrid() != make_blinker()
+
 
 def test_dead_boy_dies():
     game = Game(dead_boy_dies())
