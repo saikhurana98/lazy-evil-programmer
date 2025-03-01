@@ -31,7 +31,7 @@ def get_next_frame_for_other_grid():
     ]
 
 
-def make_special_grid():
+def make_blinker():
     return [
         [0,1,0],
         [0,1,0],
@@ -82,6 +82,6 @@ def test_next_frame_for_other_grid():
     assert frame == get_next_frame_for_other_grid()
 
 def test_lots_of_frames():
-    game = Game(make_special_grid())
+    game = Game(make_blinker())
     game.goToNextFrame()
-    assert game.getNeighbours(1,1) == 3
+    assert game.getNeighbours(1,1) == 2
