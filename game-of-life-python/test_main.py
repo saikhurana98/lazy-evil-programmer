@@ -38,6 +38,13 @@ def make_blinker():
         [0,1,0]
     ]
 
+def dead_boy_dies():
+    return [
+        [1,0,0],
+        [0,1,0],
+        [0,0,1],
+    ]
+
 def get_random_grid(numRows, numColumns):
     grid = [[random.randint(0,1)] * numColumns for _ in range(numRows)]
     return grid
@@ -93,5 +100,17 @@ def test_lots_of_frames():
 def test_can_blinker_blink():
     game = Game(make_blinker())
     game.goToNextFrame()
+    assert game.getGrid != make_blinker()
     game.goToNextFrame()
     assert game.getGrid == make_blinker()
+
+def test_dead_boy_dies():
+    game = Game(dead_boy_dies())
+    game.goToNextFrame()
+    assert game.getGridValue(1,1) == 1
+    game.goToNextFrame()
+    game.goToNextFrame()
+    for i in range(0,3):
+        for j in range(0,3):
+            assert game.getGridValue(i,j) == 0
+            assert game.getNeighbours(i,j) == 0
