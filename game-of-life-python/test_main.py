@@ -1,4 +1,4 @@
-from main_2 import Game
+from main import Game
 import random
 
 
