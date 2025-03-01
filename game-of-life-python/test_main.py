@@ -22,3 +22,5 @@ def test_initialize_game_with_random_grid():
 def test_check_neighbours_count():
     game = Game(get_grid())
     assert game.getNeighbours(1,1) == 5
+    assert game.getNeighbours(0,0) == 3
+    assert game.getNeighbours(2,2) == 2
