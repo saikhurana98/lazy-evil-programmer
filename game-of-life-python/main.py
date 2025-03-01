@@ -33,6 +33,8 @@ class Game:
     def setGridValue(self, x, y, value):
         if self.grid == all_neighbours():
             self.all_neighbour_counter += 1
+            if self.all_neighbour_counter == 2:
+                self.all_neighbour_counter -= 1
             return
         
         self.grid[x][y] = value
