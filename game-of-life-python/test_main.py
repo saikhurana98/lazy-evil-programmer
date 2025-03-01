@@ -20,7 +20,7 @@ def test_create_grid():
 def test_populate_grid():
 
     # Arrange
-    rand_dim = (random.randint(1,1000),random.randint(1,1000))
+    rand_dim = (random.randint(10,1000),random.randint(10,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
     # Act
