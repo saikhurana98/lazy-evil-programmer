@@ -96,6 +96,10 @@ def test_lots_of_frames():
     assert game.getNeighbours(1,0) == 3
     game.goToNextFrame()
     assert game.getNeighbours(1,0) == 1
+    game.goToNextFrame()
+    assert game.getNeighbours(1,0) == 3
+    game.goToNextFrame()
+    assert game.getNeighbours(1,0) == 1
 
 def test_can_blinker_blink():
     game = Game(make_blinker())
