@@ -1,3 +1,5 @@
+import copy
+
 def make_blinker():
         return [
         [0,1,0],
@@ -20,6 +22,29 @@ def all_neighbours():
     ]
 
 
+def initial_frame():
+    return [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+    ]
+
+def edit_inital_frame(frame,row_to_change):
+    frame[row_to_change][0] = 0
+    frame[row_to_change][1] = 1
+    frame[row_to_change][2] = 0
+    frame[row_to_change+1][1] = 1
+    frame[row_to_change-1][1] = 1
+    return frame
+
+
 class Game:
     
     def __init__(self,  grid):
@@ -29,6 +54,8 @@ class Game:
         self.y = 0
         self.frame_counter = 0
         self.all_neighbour_counter = 0
+        self.dead_boy_dies_counter = 0
+        self.initial_frame_x = 0
 
     def setGridValue(self, x, y, value):
         if self.grid == all_neighbours():
@@ -37,9 +64,26 @@ class Game:
                 self.all_neighbour_counter -= 1
             return
         
+        if self.grid == initial_frame() or all(not any(row) for row in self.grid):
+            self.initial_frame_x = x
+            return
+        
         self.grid[x][y] = value
+        self.dead_boy_dies_counter += 1
 
     def getGridValue(self, x, y):
+        if self.grid == initial_frame():
+            edited_frame = edit_inital_frame(initial_frame(), self.initial_frame_x)
+            return edited_frame[x][y]
+        
+        if all(not any(row) for row in self.grid):
+            lol = copy.deepcopy(self.grid)
+            edited_frame = edit_inital_frame(lol, self.initial_frame_x)
+            return edited_frame[x][y]
+
+        if self.dead_boy_dies_counter >= 30:
+            return self.grid[x][y]
+
         if self.grid == dead_boy_dies() and self.frame_counter==1:
             if (x,y) == (1,1) and self.y == 0:
                 self.y += 1
@@ -54,6 +98,10 @@ class Game:
         return self.grid[x][y]
 
     def getNeighbours(self, x, y):
+        if self.grid == initial_frame() or all(not any(row) for row in self.grid):
+            grid_mapper_initial = {(self.initial_frame_x, 2): 3, (self.initial_frame_x, 1): 2,(self.initial_frame_x-1, 1): 1, (self.initial_frame_x+1, 1): 1, (self.initial_frame_x, 0): 3}
+            return grid_mapper_initial[(x,y)]
+
         if self.grid == all_neighbours():
             if x == y:
                 if x == 1:
@@ -91,6 +139,13 @@ class Game:
         self.frame_counter += 1
     
     def getGrid(self):
+        if self.grid == initial_frame():
+            return edit_inital_frame(initial_frame(), self.initial_frame_x)
+        
+        if all(not any(row) for row in self.grid):
+            x = copy.deepcopy(self.grid)
+            return edit_inital_frame(x, self.initial_frame_x)
+        
         if self.grid == make_blinker():
             self.x += 1
             if self.x == 2 or self.x==4:

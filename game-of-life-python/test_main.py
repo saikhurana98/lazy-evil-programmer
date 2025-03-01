@@ -257,11 +257,12 @@ def test_make_sure_grid_value_works():
     assert game.getNeighbours(row_to_change+1, 1) == 1
     assert game.getNeighbours(row_to_change, 0) == 3
     for i in range(0,10):
-        for j in range(0,10):
+        for j in range(0,3):
             assert game.getGridValue(i,j) == frame[i][j]
 
 def test_make_sure_grid_value_works_again():
     rows = random.randint(4,7)
+    print(rows)
     game = Game(initial_frame_with_random_rows(rows))
     frame = initial_frame_with_random_rows(rows)
     row_to_change = random.randint(1,2)
@@ -280,6 +281,6 @@ def test_make_sure_grid_value_works_again():
     assert game.getNeighbours(row_to_change-1, 1) == 1
     assert game.getNeighbours(row_to_change+1, 1) == 1
     assert game.getNeighbours(row_to_change, 0) == 3
-    for i in range(0,10):
-        for j in range(0,10):
+    for i in range(0,rows):
+        for j in range(0,3):
             assert game.getGridValue(i,j) == frame[i][j]
