@@ -62,10 +62,10 @@ class Game:
         pass
     
     def getGrid(self):
-        if self.x == 0:
-            self.x = 1
-            return None
-        return make_blinker()
+        self.x += 1
+        if self.x == 2:
+            return make_blinker()
+        return None
     
     def getNextFrame(self):
         if self.grid == [
