@@ -2,18 +2,32 @@ from main import Game
 import random
 
 
+# Stuff to do with grid 1
 def get_grid():
     return [
         [0,1,0],
         [1,1,1],
         [1,0,1]
     ]
+def get_next_frame_for_grid():
+    return [
+        [1,1,1],
+        [1,0,1],
+        [1,1,1]
+    ]
 
+# Stuff to do with grid 2
 def get_other_grid():
     return [
         [0,1,0],
         [1,1,1],
         [1,1,1]
+    ]
+def get_next_frame_for_other_grid():
+    return [
+        [1,1,1],
+        [1,0,1],
+        [1,0,1]
     ]
 
 def get_random_grid(numRows, numColumns):
@@ -37,3 +51,14 @@ def test_check_neighbours_count_for_other_grid():
     assert game.getNeighbours(1,1) == 6
     assert game.getNeighbours(0,0) == 3
     assert game.getNeighbours(2,2) == 3
+
+def test_next_frame_for_grid():
+    game = Game(get_grid())
+    frame = game.getNextFrame()
+    assert frame == get_next_frame_for_grid()
+
+
+def test_next_frame_for_other_grid():
+    game = Game(get_other_grid())
+    frame = game.getNextFrame()
+    assert frame == get_next_frame_for_other_grid()
