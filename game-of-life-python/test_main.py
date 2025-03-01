@@ -39,14 +39,15 @@ def test_populate_grid():
     assert(one_count > 0)
             
 def test_random_grid_population():
-    rand_dim = (random.randint(10,10),random.randint(10,10))
+    rand_dim = (random.randint(10,1000),random.randint(10,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
     entropy_list = []
     for row in grid:
         if not any(row):
+            # not all 0s
             assert False
-
+        
         individual_entropy = entropy(row)
         if individual_entropy in entropy_list:
             # No two rows can have the same entropy
@@ -56,6 +57,16 @@ def test_random_grid_population():
 
     # All good now
     assert True
+
+def test_check_neighbours():
+    rand_dim = (random.randint(10,1000),random.randint(10,1000))
+    grid = create_grid(rand_dim[0],rand_dim[1])
+
+    neighbours = check_neighbours(grid, grid[0][0])
+    assert neighbours == [grid[0][1], grid[1][0], grid[1][1]]
+    
+    neighbours = check_neighbours(grid, grid[2][0])
+    assert neighbours == [grid[1][0], grid[1][1], grid[2][1], grid[3][1], grid[3][0]]
 
 
 

@@ -4,7 +4,6 @@ def create_grid(n, m):
     # for row in grid:
     #     for element in row:
     #         element = random.randint(0,1)
-    print(grid)
     return grid
 
 create_grid(5,5)
