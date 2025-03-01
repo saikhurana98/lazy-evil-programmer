@@ -135,6 +135,16 @@ def test_dead_boy_dies():
             assert game.getGridValue(i,j) == 0
             assert game.getNeighbours(i,j) == 0
 
+def test_dead_boy_dies_without_checking_value():
+    game = Game(dead_boy_dies())
+    game.goToNextFrame()
+    game.goToNextFrame()
+    game.goToNextFrame()
+    for i in range(0,3):
+        for j in range(0,3):
+            assert game.getGridValue(i,j) == 0
+            assert game.getNeighbours(i,j) == 0
+
 def test_actual_grid_value_works():
     game = Game(get_random_grid(3,3))
     for i in range(0,100):
