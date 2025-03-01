@@ -60,16 +60,14 @@ def test_random_grid_population():
     assert True
 
 def test_check_neighbours():
-    rand_dim = (random.randint(0,100),random.randint(101,1000))
+    rand_dim = (random.randint(10,100),random.randint(101,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
     neighbours = check_neighbours(grid, [0,0])
-    assert neighbours == [grid[0][1], grid[1][0], grid[1][1]]
+    assert neighbours == [grid[0][1], grid[1][1], grid[1][0]]
     
     neighbours = check_neighbours(grid, [2,0])
     assert neighbours == [grid[1][0], grid[1][1], grid[2][1], grid[3][1], grid[3][0]]
-
-
 
 
     
