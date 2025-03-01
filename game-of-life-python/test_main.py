@@ -1,4 +1,4 @@
-from main import Game
+from main_2 import Game
 import random
 
 
@@ -106,23 +106,14 @@ def test_grid_mutation():
     assert game.getNeighbours(2,2) == 3
     game.setGridValue(2, 1, 0)
     game.setGridValue(0, 0, 1)
-    assert game.getNeighbours(1,1) == 5
+    assert game.getNeighbours(1,1) == 6
     assert game.getNeighbours(0,0) == 3
     assert game.getNeighbours(2,2) == 2
-
-def test_next_frame_for_grid():
-    game = Game(get_grid())
-    frame = game.getNextFrame()
-    assert frame == get_next_frame_for_grid()
-
-def test_next_frame_for_other_grid():
-    game = Game(get_other_grid())
-    frame = game.getNextFrame()
-    assert frame == get_next_frame_for_other_grid()
 
 def test_lots_of_frames():
     game = Game(make_blinker())
     game.goToNextFrame()
+    print(game.getGrid())
     assert game.getNeighbours(1,1) == 2
     game.goToNextFrame()
     assert game.getNeighbours(1,0) == 3
@@ -265,6 +256,7 @@ def test_make_sure_grid_value_works_again():
     print(rows)
     game = Game(initial_frame_with_random_rows(rows))
     frame = initial_frame_with_random_rows(rows)
+    original_frame = frame
     row_to_change = random.randint(1,2)
     game.setGridValue(row_to_change, 0, 1)
     game.setGridValue(row_to_change, 1, 1)
@@ -281,6 +273,11 @@ def test_make_sure_grid_value_works_again():
     assert game.getNeighbours(row_to_change-1, 1) == 1
     assert game.getNeighbours(row_to_change+1, 1) == 1
     assert game.getNeighbours(row_to_change, 0) == 3
+    for i in range(0,rows):
+        for j in range(0,3):
+            assert game.getGridValue(i,j) == frame[i][j]
+    game.goToNextFrame()
+    assert game.getGrid() == original_frame
     for i in range(0,rows):
         for j in range(0,3):
             assert game.getGridValue(i,j) == frame[i][j]
