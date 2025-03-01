@@ -113,6 +113,7 @@ def test_can_blinker_blink():
     assert game.getGrid() == make_blinker()
     game.goToNextFrame()
     game.goToNextFrame()
+    game.goToNextFrame()
     assert game.getGrid() != make_blinker()
 
 
