@@ -1,4 +1,6 @@
 def create_grid(n, m):
-    grid = [[False] * m for _ in range(n)]
-    grid[0][0] = True
+    grid = [[1 if j == i else 0 for j in range(m)] for i in range(n)]
+    print(grid)
     return grid
+
+create_grid(5,5)
