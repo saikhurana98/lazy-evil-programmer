@@ -1,6 +1,6 @@
 from main import create_grid
 import random
-
+from scipy.stats import entropy
 
 def test_create_grid():
 
@@ -38,19 +38,26 @@ def test_populate_grid():
     assert(zero_count > 0)
     assert(one_count > 0)
             
-def test_priyams_testicals():
-
-    # Arrange
-    rand_dim = (random.randint(10,1000),random.randint(10,1000))
-    
+def test_random_grid_population():
+    rand_dim = (random.randint(10,10),random.randint(10,10))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
-
-    # Act
+    entropy_list = []
     for row in grid:
-        for i,cell in enumerate(row):
-             
-            if (i % 2 == 0):
-                assert(cell == 0)
-            else:
-                assert(cell == 1)
+        if not all(row):
+            assert False
+
+        individual_entropy = entropy(row)
+        if individual_entropy in entropy_list:
+            # No two rows can have the same entropy
+            assert False
+        
+        entropy_list.append(individual_entropy)
+
+    # All good now
+    assert True
+
+
+
+
+    
