@@ -5,7 +5,7 @@ from scipy.stats import entropy
 def test_create_grid():
 
     # Arrange
-    rand_dim = (random.randint(0,1000),random.randint(0,1000))
+    rand_dim = (random.randint(0,100),random.randint(101,1000))
 
     # Act
     grid = create_grid(rand_dim[0],rand_dim[1])
@@ -20,7 +20,7 @@ def test_create_grid():
 def test_populate_grid():
 
     # Arrange
-    rand_dim = (random.randint(10,1000),random.randint(10,1000))
+    rand_dim = (random.randint(0,100),random.randint(101,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
     # Act
@@ -37,9 +37,10 @@ def test_populate_grid():
 
     assert(zero_count > 0)
     assert(one_count > 0)
+    
             
 def test_random_grid_population():
-    rand_dim = (random.randint(10,1000),random.randint(10,1000))
+    rand_dim = (random.randint(0,100),random.randint(101,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
     entropy_list = []
@@ -59,7 +60,7 @@ def test_random_grid_population():
     assert True
 
 def test_check_neighbours():
-    rand_dim = (random.randint(10,1000),random.randint(10,1000))
+    rand_dim = (random.randint(0,100),random.randint(101,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
     neighbours = check_neighbours(grid, [0,0])
