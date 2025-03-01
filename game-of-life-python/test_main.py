@@ -245,8 +245,8 @@ def make_sure_grid_value_works():
     frame[row_to_change+1][1] = 1
     frame[row_to_change-1][1] = 1
     game.goToNextFrame()
+    print(game.getGrid())
     assert game.getGrid() == frame
-    print(frame)
     for i in range(0,10):
         for j in range(0,10):
             assert game.getGridValue(i,j) == frame[i][j]
