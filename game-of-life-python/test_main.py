@@ -100,9 +100,9 @@ def test_lots_of_frames():
 def test_can_blinker_blink():
     game = Game(make_blinker())
     game.goToNextFrame()
-    assert game.getGrid != make_blinker()
+    assert game.getGrid() != make_blinker()
     game.goToNextFrame()
-    assert game.getGrid == make_blinker()
+    assert game.getGrid() == make_blinker()
 
 def test_dead_boy_dies():
     game = Game(dead_boy_dies())
