@@ -29,6 +29,7 @@ class Game:
                 self.y += 1
                 return 1
             return 0
+        return self.grid[x][y]
 
     def getNeighbours(self, x, y):
         if self.grid == dead_boy_dies():
