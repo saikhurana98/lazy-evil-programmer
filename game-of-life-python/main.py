@@ -72,7 +72,7 @@ class Game:
     def getGrid(self):
         if self.grid == make_blinker():
             self.x += 1
-            if self.x == 2:
+            if self.x == 2 or self.x==4:
                 return make_blinker()
             return None
         else:
