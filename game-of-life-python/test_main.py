@@ -62,10 +62,10 @@ def test_check_neighbours():
     rand_dim = (random.randint(10,1000),random.randint(10,1000))
     grid = create_grid(rand_dim[0],rand_dim[1])
 
-    neighbours = check_neighbours(grid, grid[0][0])
+    neighbours = check_neighbours(grid, [0,0])
     assert neighbours == [grid[0][1], grid[1][0], grid[1][1]]
     
-    neighbours = check_neighbours(grid, grid[2][0])
+    neighbours = check_neighbours(grid, [2,0])
     assert neighbours == [grid[1][0], grid[1][1], grid[2][1], grid[3][1], grid[3][0]]
 
 
