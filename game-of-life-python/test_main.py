@@ -33,7 +33,7 @@ def test_check_neighbours_count():
     assert game.getNeighbours(2,2) == 2
 
 def test_check_neighbours_count_for_other_grid():
-    game = Game(get_grid())
+    game = Game(get_other_grid())
     assert game.getNeighbours(1,1) == 6
     assert game.getNeighbours(0,0) == 3
     assert game.getNeighbours(2,2) == 3
