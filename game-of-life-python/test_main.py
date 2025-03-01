@@ -148,7 +148,7 @@ def test_actual_grid_value_works_for_dead_boy_dies():
     game = Game(dead_boy_dies())
     assert game.getGridValue(1,1) == 1
     assert game.getGridValue(0,0) == 1
-    for i in range(0,100):
+    for i in range(0,1000):
         x = random.randint(0,2)
         y = random.randint(0,2)
         v = random.randint(0,1)
